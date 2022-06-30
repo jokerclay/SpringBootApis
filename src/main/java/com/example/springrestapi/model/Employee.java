@@ -26,9 +26,18 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 对应 数据库中的 自增
     @Column(name = "id", nullable = false)
     private Long id;
+    // ****************************
+    //  如果 类中的数据成员 名 与 数据库中的字段 名 相同， 可省去
+    // 如:
+    //    @Column(name = "name")
+    //    private String name;
+    //          |
+    //          V
+    //    private String name;
+    //    一样可以运行
+    // ****************************
 
     //    @JsonProperty("full_name")
-    @Column(name = "name")
     private String name;
 
     // ===========================
@@ -37,16 +46,9 @@ public class Employee {
     // ===========================
 
 //    @JsonIgnore
-    @Column(name = "age")
     private Long age;
-
-    @Column(name = "location")
     private String location;
-
-    @Column(name = "email")
     private String email;
-
-    @Column(name = "department")
     private String department;
 
 
