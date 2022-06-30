@@ -91,7 +91,7 @@ public class EmployeeController {
 //    }
 
     @DeleteMapping(value = "employees")
-    public void deleteEmployee(@RequestParam("id") Long id) {
+    public void deletoor(@RequestParam("id") Long id) {
         eService.deleteEmployee(id);
     }
 
@@ -139,8 +139,8 @@ public class EmployeeController {
      * */
     @PutMapping(value="/employees/{id}")
     public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
-        System.out.println("更新了 员工 " +id);
-        return employee;
+        employee.setId(id);
+        return eService.updateEmployee(employee);
     }
 
 }
