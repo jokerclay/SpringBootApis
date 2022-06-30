@@ -5,8 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -45,5 +48,18 @@ public class Employee {
 
     @Column(name = "department")
     private String department;
+
+
+    /**
+     * 时间戳
+     * */
+    @CreationTimestamp()
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private Date createdAt;
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private Date updatedAt;
+
+
 
 }
