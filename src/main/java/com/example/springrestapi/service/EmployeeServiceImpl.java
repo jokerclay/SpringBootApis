@@ -58,4 +58,9 @@ public class EmployeeServiceImpl implements EmployeeService {
             return employee.get();
         } throw new RuntimeException("不存在 id 为 "+id+ " 的员工");
     }
+
+    @Override
+    public void deleteEmployee(Long id) {
+        eRepository.deleteById(id);
+    }
 }

@@ -13,4 +13,6 @@ public interface EmployeeService {
 
     // 根据 id 获取某个员工信息
     Employee getSingleEmployee(Long id);
+    // 根据 id 删除某个员工信息
+    void deleteEmployee(Long id);
 }

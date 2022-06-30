@@ -85,10 +85,19 @@ public class EmployeeController {
     *  Purpose: 通过 key value pair 找到员工
     *  Return: String
     * */
+//    @DeleteMapping(value = "employees")
+//    public String deleteEmployee(@RequestParam("id") Long id) {
+//        return "删除 id 为 " + id + " 员工";
+//    }
+
     @DeleteMapping(value = "employees")
-    public String deleteEmployee(@RequestParam("id") Long id) {
-        return "删除 id 为 " + id + " 员工";
+    public void deleteEmployee(@RequestParam("id") Long id) {
+        eService.deleteEmployee(id);
     }
+
+
+
+
 
     // 多个URL 的参数
 //    @DeleteMapping(value = "employees")
