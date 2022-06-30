@@ -5,7 +5,6 @@ import com.example.springrestapi.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -13,9 +12,9 @@ import java.util.List;
 /**
  *  Purpose: 安静所有 api 都放到  http://127.0.0.1:8080/api/v1 下
  */
-@RequestMapping("/api/v1")
-public class EmployeeController {
+//@RequestMapping("/api/v1")        // Set all the controller under /api/v1, see file `application.properties`
 
+public class EmployeeController {
 
     /**
      *  Purpose: 注入 EmployeeService
