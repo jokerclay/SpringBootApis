@@ -105,11 +105,15 @@ public class EmployeeController {
 //        return "将员工 "+id+" 信息存储到 数据库中";
 //    }
 
-    @PostMapping(value = "employees")
-    public String saveEmployee(@RequestBody Employee employee) {
-        return "已将员工 "+employee+" 信息存储到 数据库中";
-    }
+//    @PostMapping(value = "employees")
+//    public String saveEmployee(@RequestBody Employee employee) {
+//        return "已将员工 "+employee+" 信息存储到 数据库中";
+//    }
 
+    @PostMapping(value = "employees")
+    public Employee saveEmployee(@RequestBody Employee employee) {
+        return eService.saveEmployee(employee);     // 调用存储 员工 服务
+    }
 
 
     /**

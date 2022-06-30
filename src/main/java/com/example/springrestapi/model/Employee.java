@@ -20,7 +20,7 @@ public class Employee {
     // ===========================
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) // 对应 数据库中的 自增
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 对应 数据库中的 自增
     @Column(name = "id", nullable = false)
     private Long id;
 
