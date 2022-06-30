@@ -1,16 +1,24 @@
 package com.example.springrestapi.controller;
 
 import com.example.springrestapi.model.Employee;
+import com.example.springrestapi.service.EmployeeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class EmployeeController {
-    @Value("${app.name}")
-    private String appName;
 
-    @Value("${app.version}")
-    private String appVersion;
+
+    /**
+     *  Purpose: 注入 EmployeeService
+     *  Return: List
+     */
+    @Autowired
+    private EmployeeService eService;
+
 
     /**
      *  URL: http://127.0.0.1:8080/details
@@ -18,6 +26,12 @@ public class EmployeeController {
      *  Purpose: 获取应用信息
      *  Return: String
      */
+    @Value("${app.name}")
+    private String appName;
+
+    @Value("${app.version}")
+    private String appVersion;
+
     @GetMapping(value = "/details")
     public String getAppDetails() {
         return "软件名: "+ appName +"<br>"+
@@ -32,10 +46,13 @@ public class EmployeeController {
      *  Return: String
      */
     @GetMapping(value  = "/employees")
-    public String getEmployees() {
-        return "显示员工信息 Controller";
-    }
+//    public String getEmployees() {
+//        return "显示员工信息 Controller";
+//    }
 
+    public List<Employee> getEmployees() {
+        return eService.getEmployees();
+    }
 
    /**
     * 使用 路径变量 将数据从客户端发送到服务端
