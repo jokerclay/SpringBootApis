@@ -10,4 +10,7 @@ public interface EmployeeService {
 
     // 存储某个员工信息
     Employee saveEmployee(Employee employee);
+
+    // 根据 id 获取某个员工信息
+    Employee getSingleEmployee(Long id);
 }

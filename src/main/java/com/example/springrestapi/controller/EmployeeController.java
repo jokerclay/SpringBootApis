@@ -67,20 +67,24 @@ public class EmployeeController {
     * */
 
    @GetMapping(value  = "/employees/{id}")
-   public String getEmployee(@PathVariable("id") Long id) {
-       return "获取了 id 为 " + id +" 的员工信息";
+//   public String getEmployee(@PathVariable("id") Long id) {
+//       return "获取了 id 为 " + id +" 的员工信息";
+//   }
+   public Employee getEmployee(@PathVariable("id") Long id) {
+       return eService.getSingleEmployee(id);
    }
 
 
-    /**
-     * 使用 query param 将数据从客户端发送到服务端
-     *  URL: http://127.0.0.1:8080/api/v1/employees/?id=69
-     *       多个参数使用 & 分割
-     *       http://127.0.0.1:8080/employees/api/v1/69&username=john
-     *  Method: DELETE
-     *  Purpose: 通过 key value pair 找到员工
-     *  Return: String
-     * */
+
+   /**
+    * 使用 query param 将数据从客户端发送到服务端
+    *  URL: http://127.0.0.1:8080/api/v1/employees/?id=69
+    *       多个参数使用 & 分割
+    *       http://127.0.0.1:8080/employees/api/v1/69&username=john
+    *  Method: DELETE
+    *  Purpose: 通过 key value pair 找到员工
+    *  Return: String
+    * */
     @DeleteMapping(value = "employees")
     public String deleteEmployee(@RequestParam("id") Long id) {
         return "删除 id 为 " + id + " 员工";
