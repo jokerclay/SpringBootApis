@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+
+/**
+ *  Purpose: 安静所有 api 都放到  http://127.0.0.1:8080/api/v1 下
+ */
+@RequestMapping("/api/v1")
 public class EmployeeController {
 
 
@@ -21,7 +26,7 @@ public class EmployeeController {
 
 
     /**
-     *  URL: http://127.0.0.1:8080/details
+     *  URL: http://127.0.0.1:8080/api/v1/details
      *  Method: GET
      *  Purpose: 获取应用信息
      *  Return: String
@@ -40,7 +45,7 @@ public class EmployeeController {
 
 
     /**
-     *  URL: http://127.0.0.1:8080/employees
+     *  URL: http://127.0.0.1:8080/api/v1/employees
      *  Method: GET
      *  Purpose: 显示员工信息
      *  Return: String
@@ -56,7 +61,7 @@ public class EmployeeController {
 
    /**
     * 使用 路径变量 将数据从客户端发送到服务端
-    *  URL: http://127.0.0.1:8080/employees/69
+    *  URL: http://127.0.0.1:8080/api/v1/employees/69
     *  Method: GET
     *  Purpose: 通过 id 找到员工
     *  Return: String
@@ -70,9 +75,9 @@ public class EmployeeController {
 
     /**
      * 使用 query param 将数据从客户端发送到服务端
-     *  URL: http://127.0.0.1:8080/employees/?id=69
+     *  URL: http://127.0.0.1:8080/api/v1/employees/?id=69
      *       多个参数使用 & 分割
-     *       http://127.0.0.1:8080/employees/69&username=john
+     *       http://127.0.0.1:8080/employees/api/v1/69&username=john
      *  Method: DELETE
      *  Purpose: 通过 key value pair 找到员工
      *  Return: String
@@ -90,7 +95,7 @@ public class EmployeeController {
 
 
     /**
-     *  URL: http://127.0.0.1:8080/employees/?id=69
+     *  URL: http://127.0.0.1:8080/employees/api/v1/?id=69
      *  Method: POST
      *  Purpose: 创建新员工（将 JSON 数据 与 java  object 对应（mapping））
      *  Return: String
@@ -109,7 +114,7 @@ public class EmployeeController {
 
 
     /**
-     *  URL: http://127.0.0.1:8080/employees/69
+     *  URL: http://127.0.0.1:8080/api/v1/employees/69
      *  Method: PUT
      *  Purpose: 更新已存储在的员工
      *  Return: Employee
@@ -121,19 +126,6 @@ public class EmployeeController {
         System.out.println("更新了 员工 " +id);
         return employee;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 
