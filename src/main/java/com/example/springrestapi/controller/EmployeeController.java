@@ -64,8 +64,8 @@ public class EmployeeController {
 //    不仅要返回 Employee 还要返回 http 状态码OK
 //    ======================================
 
-    public ResponseEntity<List<Employee>> getEmployees() {
-        return new ResponseEntity<List<Employee>>(eService.getEmployees(), HttpStatus.OK);
+    public ResponseEntity<List<Employee>> getEmployees(@RequestParam Integer pageNumber, @RequestParam Integer pageSize) {
+        return new ResponseEntity<List<Employee>>(eService.getEmployees(pageNumber, pageSize), HttpStatus.OK);
     }
 
    /**

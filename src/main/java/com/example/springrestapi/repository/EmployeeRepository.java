@@ -2,6 +2,7 @@ package com.example.springrestapi.repository;
 
 import com.example.springrestapi.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,7 +12,12 @@ import java.util.List;
  *
  * */
 @Repository
-public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+//public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+
+//====================
+// Paging And Sorting
+//====================
+public interface EmployeeRepository extends PagingAndSortingRepository<Employee, Long> {
 
     /**
      * 除了增删改查之外的操作，排序, 分页的操作 使用 JPA 提供的 api,

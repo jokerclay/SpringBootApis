@@ -3,7 +3,10 @@ package com.example.springrestapi.service;
 import com.example.springrestapi.model.Employee;
 import com.example.springrestapi.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,10 +44,19 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository eRepository;
 
 
+//    @Override
+//    public List<Employee> getEmployees() {
+//        return eRepository.findAll();
+//    }
+
     @Override
-    public List<Employee> getEmployees() {
-        return eRepository.findAll();
+    public List<Employee> getEmployees(int pageNumber, int pageSize) {
+        Pageable pages = PageRequest.of(pageNumber, pageSize);
+        return  eRepository.findAll(pages).getContent();
     }
+
+
+
 
     @Override
     public Employee saveEmployee(Employee employee) {
