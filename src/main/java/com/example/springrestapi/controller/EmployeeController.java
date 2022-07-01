@@ -196,8 +196,8 @@ public class EmployeeController {
      *  Purpose: 通过 name 的 keyword 查找员工
      * */
     @GetMapping(value="/employees/filterByKeyword")
-    public ResponseEntity<List<Employee>>  getEmployeeByKeyword(@RequestParam String keyword) {
-        return new ResponseEntity<List<Employee>>(eService.getEmployeeByKeyword(keyword), HttpStatus.OK);
+    public ResponseEntity<List<Employee>>  getEmployeeByKeyword(@RequestParam String name) {
+        return new ResponseEntity<List<Employee>>(eService.getEmployeeByKeyword(name), HttpStatus.OK);
     }
 
 
