@@ -19,6 +19,9 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
      * */
     List<Employee> findByName(String name);
 
+
+
+
     /**
      *  使用 JPA SQL 多个字段
      *  ie:
@@ -29,6 +32,25 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
      *
      * */
     List<Employee> findByNameAndLocation(String name, String location);
+
+
+
+
+
+    /**
+     *  使用 JPA SQL like
+     *  ie:
+     *      select * from tbl_employee where name like "%to%";
+     *                          |
+     *                          V
+     *                  findByNameContaining(String Keyword)
+     *                  findByNameLike(String "%" + Keyword + "%")
+     *
+     * */
+    List<Employee> findByNameContaining(String keyword);
+
+
+
 
 
 }

@@ -189,5 +189,17 @@ public class EmployeeController {
         return new ResponseEntity<List<Employee>>(eService.getEmployeeByNameAndLocation(name, location), HttpStatus.OK);
     }
 
+
+    /**
+     *  URL: http://127.0.0.1:8080/api/v1/employees/filterByKeyword?keyword=to
+     *  Method: GET
+     *  Purpose: 通过 name 的 keyword 查找员工
+     * */
+    @GetMapping(value="/employees/filterByKeyword")
+    public ResponseEntity<List<Employee>>  getEmployeeByKeyword(@RequestParam String keyword) {
+        return new ResponseEntity<List<Employee>>(eService.getEmployeeByKeyword(keyword), HttpStatus.OK);
+    }
+
+
 }
 

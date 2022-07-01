@@ -28,5 +28,7 @@ public interface EmployeeService {
     // 根据 name 和 department 获取员工信息
     List<Employee> getEmployeeByNameAndLocation(String name, String location);
 
+    // 获取 包含 关键字 员工信息
+    List<Employee> getEmployeeByKeyword(String keyword);
 
 }
