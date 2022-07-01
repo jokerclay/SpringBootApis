@@ -4,6 +4,8 @@ import com.example.springrestapi.model.Employee;
 import com.example.springrestapi.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -20,7 +22,6 @@ public class EmployeeController {
 
     /**
      *  Purpose: 注入 EmployeeService
-     *  Return: List
      */
     @Autowired
     private EmployeeService eService;
@@ -56,8 +57,15 @@ public class EmployeeController {
 //        return "显示员工信息 Controller";
 //    }
 
-    public List<Employee> getEmployees() {
-        return eService.getEmployees();
+//    public List<Employee> getEmployees() {
+//        return eService.getEmployees();
+//    }
+//    ======================================
+//    不仅要返回 Employee 还要返回 http 状态码OK
+//    ======================================
+
+    public ResponseEntity<List<Employee>> getEmployees() {
+        return new ResponseEntity<List<Employee>>(eService.getEmployees(), HttpStatus.OK);
     }
 
    /**
@@ -72,10 +80,12 @@ public class EmployeeController {
 //   public String getEmployee(@PathVariable("id") Long id) {
 //       return "获取了 id 为 " + id +" 的员工信息";
 //   }
-   public Employee getEmployee(@PathVariable("id") Long id) {
-       return eService.getSingleEmployee(id);
+//   public Employee getEmployee(@PathVariable("id") Long id) {
+//       return eService.getSingleEmployee(id);
+//   }
+   public ResponseEntity<Employee> getEmployee(@PathVariable("id") Long id) {
+       return new ResponseEntity<Employee>(eService.getSingleEmployee(id), HttpStatus.OK);
    }
-
 
 
    /**
@@ -91,10 +101,14 @@ public class EmployeeController {
 //    public String deleteEmployee(@RequestParam("id") Long id) {
 //        return "删除 id 为 " + id + " 员工";
 //    }
-
+//
+//    @DeleteMapping(value = "employees")
+//    public void deletoor(@RequestParam("id") Long id) {
+//        eService.deleteEmployee(id);
+//    }
     @DeleteMapping(value = "employees")
-    public void deletoor(@RequestParam("id") Long id) {
-        eService.deleteEmployee(id);
+    public ResponseEntity<HttpStatus> deletoor(@RequestParam("id") Long id) {
+        return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);           // statusCode 204 No Content
     }
 
 
@@ -125,9 +139,17 @@ public class EmployeeController {
 //        return "已将员工 "+employee+" 信息存储到 数据库中";
 //    }
 
+//    @PostMapping(value = "employees")
+//    public Employee saveEmployee(@Valid @RequestBody Employee employee) {
+//        return eService.saveEmployee(employee);     // 调用存储 员工 服务
+//    }
+
+//    ============================================
+//    不仅要返回 Employee 还要返回 http 状态码CREATED
+//    ============================================
     @PostMapping(value = "employees")
-    public Employee saveEmployee(@Valid @RequestBody Employee employee) {
-        return eService.saveEmployee(employee);     // 调用存储 员工 服务
+    public ResponseEntity<Employee> saveEmployee(@Valid @RequestBody Employee employee) {
+        return new ResponseEntity<Employee>(eService.saveEmployee(employee), HttpStatus.CREATED);     // 调用存储 员工 服务
     }
 
 
@@ -140,9 +162,9 @@ public class EmployeeController {
      *         see more info:  https://blog.csdn.net/japson_iot/article/details/79660293
      * */
     @PutMapping(value="/employees/{id}")
-    public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
+    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
         employee.setId(id);
-        return eService.updateEmployee(employee);
+        return new ResponseEntity<Employee>(eService.updateEmployee(employee), HttpStatus.OK);
     }
 
 }
