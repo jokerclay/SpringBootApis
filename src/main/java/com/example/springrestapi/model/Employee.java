@@ -10,6 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -40,7 +41,9 @@ public class Employee {
     // ****************************
 
     //    @JsonProperty("full_name")
-    @NotNull(message = "用户名不能为空")            // 通过 java validation 确保 不为 null
+//    @NotNull(message = "用户名不能为空")            // 通过 java validation 确保 不为 null
+//    @NotEmpty                                     // 通过 java validation 确保 不为 空
+    @NotBlank(message = "用户名不能为空")              // 通过 java validation 确保 不为 空白
     private String name;
 
     // ===========================
@@ -54,7 +57,7 @@ public class Employee {
     private String location;
     @Email(message = "请输入有效邮箱")
     private String email;
-    @NotNull(message = "部门不能为空")
+    @NotBlank(message = "部门不能为空")
     private String department;
 
 
