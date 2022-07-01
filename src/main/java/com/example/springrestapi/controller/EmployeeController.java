@@ -167,12 +167,8 @@ public class EmployeeController {
         return new ResponseEntity<Employee>(eService.updateEmployee(employee), HttpStatus.OK);
     }
 
-
-
-
-
     /**
-     *  URL: http://127.0.0.1:8080/api/v1/employees/filterByName?name=john
+     *  URL: http://127.0.0.1:8080/api/v1//employees/filterByName?name=john
      *  Method: GET
      *  Purpose:
      * */
@@ -182,13 +178,15 @@ public class EmployeeController {
     }
 
 
-
-
-
-
-
-
-
+    /**
+     *  URL: http://127.0.0.1:8080/api/v1/employees/filterByNameAndLocation?name=tim&location=IT
+     *  Method: GET
+     *  Purpose:
+     * */
+    @GetMapping(value="/employees/filterByNameAndLocation")
+    public ResponseEntity<List<Employee>>  getEmployeeByNameAndDepartment(@RequestParam String name, @RequestParam String location) {
+        return new ResponseEntity<List<Employee>>(eService.getEmployeeByNameAndLocation(name, location), HttpStatus.OK);
+    }
 
 }
 

@@ -19,4 +19,16 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
      * */
     List<Employee> findByName(String name);
 
+    /**
+     *  使用 JPA SQL 多个字段
+     *  ie:
+     *      select * from tbl_employee where `name` = "tim" and `department` = "IT";
+     *                          |
+     *                          V
+     *                  findByNameAndDepartment(String name, String department)
+     *
+     * */
+    List<Employee> findByNameAndLocation(String name, String location);
+
+
 }

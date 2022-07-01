@@ -20,5 +20,13 @@ public interface EmployeeService {
     // 更新员工信息
     Employee updateEmployee(Employee employee);
 
+    // 根据 name 获取某个员工信息
     List<Employee> getEmployeeByName(String name);
+
+
+
+    // 根据 name 和 department 获取员工信息
+    List<Employee> getEmployeeByNameAndLocation(String name, String location);
+
+
 }
