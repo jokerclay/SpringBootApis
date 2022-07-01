@@ -31,4 +31,7 @@ public interface EmployeeService {
     // 获取 包含 关键字 员工信息
     List<Employee> getEmployeeByKeyword(String keyword);
 
+    // 自定义 SQL
+    List<Employee> getEmployeesByNameOrLocationService(String name, String location);
+
 }

@@ -201,5 +201,15 @@ public class EmployeeController {
     }
 
 
+    /**
+     *  URL: http://127.0.0.1:8080/api/v1/employees/sam/AU
+     *  Method: GET
+     *  Purpose: 通过 name  或者 location 查找员工
+     * */
+    @GetMapping(value="/employees/{name}/{location}")
+    public ResponseEntity<List<Employee>>  getEmployeesByNameOrLocation(@PathVariable String name, @PathVariable String location) {
+        return new ResponseEntity<List<Employee>>(eService.getEmployeesByNameOrLocationService(name, location), HttpStatus.OK);
+    }
+
 }
 
