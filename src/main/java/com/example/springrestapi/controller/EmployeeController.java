@@ -170,7 +170,8 @@ public class EmployeeController {
     /**
      *  URL: http://127.0.0.1:8080/api/v1//employees/filterByName?name=john
      *  Method: GET
-     *  Purpose:
+     *  Purpose: 通过 name 查找
+     *
      * */
     @GetMapping(value="/employees/filterByName")
     public ResponseEntity<List<Employee>>  getEmployeeByName(@RequestParam String name) {
@@ -181,7 +182,7 @@ public class EmployeeController {
     /**
      *  URL: http://127.0.0.1:8080/api/v1/employees/filterByNameAndLocation?name=tim&location=IT
      *  Method: GET
-     *  Purpose:
+     *  Purpose: 通过 name 和 location 同时查找
      * */
     @GetMapping(value="/employees/filterByNameAndLocation")
     public ResponseEntity<List<Employee>>  getEmployeeByNameAndDepartment(@RequestParam String name, @RequestParam String location) {
