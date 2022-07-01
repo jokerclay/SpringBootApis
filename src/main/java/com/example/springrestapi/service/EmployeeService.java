@@ -34,4 +34,6 @@ public interface EmployeeService {
     // 自定义 SQL
     List<Employee> getEmployeesByNameOrLocationService(String name, String location);
 
+    Integer deleteByEmployeeNameService(String name);
+
 }

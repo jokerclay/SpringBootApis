@@ -3,10 +3,12 @@ package com.example.springrestapi.repository;
 import com.example.springrestapi.model.Employee;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -71,6 +73,10 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
 //    List<Employee>  getEmployeesByNameOrLocation (@Param("name") String abc, @param("location")String cde);
 
 
+    @Transactional
+    @Modifying  // 自定义的 SQL 更改数据库时要加上 @Modifying 注解
+    @Query("DELETE FROM Employee WHERE name = :name")
+    Integer deleteEmployeeByName(String name);
 
 
 

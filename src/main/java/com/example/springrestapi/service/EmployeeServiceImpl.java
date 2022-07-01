@@ -104,4 +104,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<Employee> getEmployeesByNameOrLocationService(String name, String location) {
         return eRepository.getEmployeesByNameOrLocation(name, location);
     }
+
+    @Override
+    public Integer deleteByEmployeeNameService(String name) {
+        return eRepository.deleteEmployeeByName(name);
+    }
 }

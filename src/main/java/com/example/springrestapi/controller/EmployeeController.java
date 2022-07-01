@@ -211,5 +211,19 @@ public class EmployeeController {
         return new ResponseEntity<List<Employee>>(eService.getEmployeesByNameOrLocationService(name, location), HttpStatus.OK);
     }
 
+
+
+
+
+    /**
+     *  URL: http://127.0.0.1:8080/api/v1/employees/sam/AU
+     *  Method: GET
+     *  Purpose: 通过 name  或者 location 查找员工
+     * */
+    @DeleteMapping(value="/employees/delete/{name}")
+    public ResponseEntity<String>  deleteEmployeeByName(@PathVariable String name) {
+        return new ResponseEntity<String>(eService.deleteByEmployeeNameService(name)+ " 被删除了", HttpStatus.OK);
+    }
+
 }
 
