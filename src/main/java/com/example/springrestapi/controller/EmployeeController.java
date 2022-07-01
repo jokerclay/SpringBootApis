@@ -167,5 +167,28 @@ public class EmployeeController {
         return new ResponseEntity<Employee>(eService.updateEmployee(employee), HttpStatus.OK);
     }
 
+
+
+
+
+    /**
+     *  URL: http://127.0.0.1:8080/api/v1/employees/filterByName?name=john
+     *  Method: GET
+     *  Purpose:
+     * */
+    @GetMapping(value="/employees/filterByName")
+    public ResponseEntity<List<Employee>>  getEmployeeByName(@RequestParam String name) {
+        return new ResponseEntity<List<Employee>>(eService.getEmployeeByName(name), HttpStatus.OK);
+    }
+
+
+
+
+
+
+
+
+
+
 }
 

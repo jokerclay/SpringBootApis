@@ -69,4 +69,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         // 直接重新保存
         return eRepository.save(employee);
     }
+
+    @Override
+    public List<Employee> getEmployeeByName(String name) {
+        return eRepository.findByName(name);
+    }
 }

@@ -19,4 +19,6 @@ public interface EmployeeService {
 
     // 更新员工信息
     Employee updateEmployee(Employee employee);
+
+    List<Employee> getEmployeeByName(String name);
 }
