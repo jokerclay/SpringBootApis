@@ -44,10 +44,6 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
      * */
     List<Employee> findByNameAndLocation(String name, String location);
 
-
-
-
-
     /**
      *  使用 JPA SQL like
      *  ie:
@@ -72,12 +68,9 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
     List<Employee>  getEmployeesByNameOrLocation  (String name, String location);
 //    List<Employee>  getEmployeesByNameOrLocation (@Param("name") String abc, @param("location")String cde);
 
-
     @Transactional
     @Modifying  // 自定义的 SQL 更改数据库时要加上 @Modifying 注解
     @Query("DELETE FROM Employee WHERE name = :name")
     Integer deleteEmployeeByName(String name);
-
-
 
 }
