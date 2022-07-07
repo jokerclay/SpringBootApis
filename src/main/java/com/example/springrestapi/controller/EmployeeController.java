@@ -96,21 +96,33 @@ public class EmployeeController {
      *  Method: POST
      *  Purpose: 创建新员工（将 JSON 数据 与 java  object 对应（mapping））
      *  Return: String
-     * */
+     *
+     * @return*/
 
     @PostMapping(value = "/employees")
-    public ResponseEntity<Employee> saveEmployee(@Valid @RequestBody EmployeeRequest eRequest) {
+    public ResponseEntity<String> saveEmployee(@Valid @RequestBody EmployeeRequest eRequest) {
 
-        Department dept = new Department();
-        dept.setName(eRequest.getDepartment());
+//        Department dept = new Department();
+//        dept.setName(eRequest.getDepartment());
+//
+//        dept = dRepo.save(dept);
+//
+//        Employee employee = new Employee(eRequest);
+//        employee.setDepartment(dept);
+//
+//        employee = eRepo.save(employee);
+//        return new ResponseEntity<Employee>(employee, HttpStatus.CREATED);
 
-        dept = dRepo.save(dept);
-
-        Employee employee = new Employee(eRequest);
-        employee.setDepartment(dept);
-
+        Employee employee  = new Employee(eRequest);
         employee = eRepo.save(employee);
-        return new ResponseEntity<Employee>(employee, HttpStatus.CREATED);
+
+        for (String s : eRequest.getDepartment()) {
+            Department d = new Department();
+            d.setName(s);
+            d.setEmployee(employee);
+            dRepo.save(d);
+        }
+        return new ResponseEntity<String>("记录成功保存",HttpStatus.CREATED);
     }
 
 
@@ -135,11 +147,11 @@ public class EmployeeController {
      *  Return: Employee
      *
      * */
-    @GetMapping(value = "/employees/filter/{name}")
-    public ResponseEntity<List<Employee>> getEmployeesByDepartment(@PathVariable String name) {
-//       return new ResponseEntity<List<Employee>>(eRepo.findByDepartmentName(name), HttpStatus.OK);
-        return new ResponseEntity<List<Employee>>(eRepo.getEmployeesByDepartmentName(name), HttpStatus.OK);
-    }
+//    @GetMapping(value = "/employees/filter/{name}")
+//    public ResponseEntity<List<Employee>> getEmployeesByDepartment(@PathVariable String name) {
+////       return new ResponseEntity<List<Employee>>(eRepo.findByDepartmentName(name), HttpStatus.OK);
+//        return new ResponseEntity<List<Employee>>(eRepo.getEmployeesByDepartmentName(name), HttpStatus.OK);
+//    }
 
 }
 

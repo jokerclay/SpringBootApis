@@ -18,6 +18,10 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
-    @NotBlank(message = "用户名不能为空")
+    @NotBlank(message = "部门名不能为空")
     private String name;
+
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 }

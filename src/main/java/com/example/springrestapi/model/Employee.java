@@ -23,9 +23,9 @@ public class Employee {
     /**
      * 将 department 与  employee 形成一对一对应关系
      * */
-    @JoinColumn(name = "department_id", nullable = false)
-    @OneToOne
-    private Department department;
+//    @JoinColumn(name = "department_id", nullable = false)
+//    @OneToOne
+//    private Department department;
 
     public Employee(EmployeeRequest req) {
         this.name = req.getName();
