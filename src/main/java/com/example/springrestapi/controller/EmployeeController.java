@@ -1,6 +1,10 @@
 package com.example.springrestapi.controller;
 
+import com.example.springrestapi.model.Department;
 import com.example.springrestapi.model.Employee;
+import com.example.springrestapi.repository.DepartmentRepository;
+import com.example.springrestapi.repository.EmployeeRepository;
+import com.example.springrestapi.request.EmployeeRequest;
 import com.example.springrestapi.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +23,11 @@ public class EmployeeController {
     @Autowired
     private EmployeeService eService;
 
+    @Autowired
+    private EmployeeRepository eRepo;
+
+    @Autowired
+    private DepartmentRepository dRepo;
     /**-----------------------------------
      *
      *  ControllerS
@@ -89,9 +98,19 @@ public class EmployeeController {
      *  Return: String
      * */
 
-    @PostMapping(value = "employees")
-    public ResponseEntity<Employee> saveEmployee(@Valid @RequestBody Employee employee) {
-        return new ResponseEntity<Employee>(eService.saveEmployee(employee), HttpStatus.CREATED);     // 调用存储 员工 服务
+    @PostMapping(value = "/employees")
+    public ResponseEntity<Employee> saveEmployee(@Valid @RequestBody EmployeeRequest eRequest) {
+
+        Department dept = new Department();
+        dept.setName(eRequest.getDepartment());
+
+        dept = dRepo.save(dept);
+
+        Employee employee = new Employee(eRequest);
+        employee.setDepartment(dept);
+
+        employee = eRepo.save(employee);
+        return new ResponseEntity<Employee>(employee, HttpStatus.CREATED);
     }
 
 
