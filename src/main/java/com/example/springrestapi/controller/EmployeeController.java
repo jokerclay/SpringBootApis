@@ -128,5 +128,17 @@ public class EmployeeController {
         return new ResponseEntity<Employee>(eService.updateEmployee(employee), HttpStatus.OK);
     }
 
+    /**
+     *  URL: http://127.0.0.1:8080/api/v1/employees/filter/IT
+     *  Method: GET
+     *  Purpose: 根据部门获取员工
+     *  Return: Employee
+     *
+     * */
+    @GetMapping(value = "/employees/filter/{name}")
+    public ResponseEntity<List<Employee>> getEmployeesByDepartment(@PathVariable String name) {
+       return new ResponseEntity<List<Employee>>(eRepo.findByDepartmentName(name), HttpStatus.OK);
+    }
+
 }
 
