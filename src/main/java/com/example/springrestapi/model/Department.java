@@ -21,7 +21,13 @@ public class Department {
     @NotBlank(message = "部门名不能为空")
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
+//    @ManyToOne
+//    @JoinColumn(name = "employee_id")
+//    private Employee employee;
+
+
+    @OneToOne(mappedBy= "department")
     private Employee employee;
+
+
 }

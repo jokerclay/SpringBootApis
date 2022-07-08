@@ -10,6 +10,6 @@ import java.util.List;
 public class EmployeeRequest {
     private String name;
 //    private String department;
-    private List<String> department;
+    private String department;
 
 }

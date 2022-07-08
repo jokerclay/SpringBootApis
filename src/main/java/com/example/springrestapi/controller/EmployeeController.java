@@ -99,31 +99,72 @@ public class EmployeeController {
      *
      * @return*/
 
-    @PostMapping(value = "/employees")
-    public ResponseEntity<String> saveEmployee(@Valid @RequestBody EmployeeRequest eRequest) {
+//    @PostMapping(value = "/employees")
+//    public ResponseEntity<String> saveEmployee(@Valid @RequestBody EmployeeRequest eRequest) {
+//
+////        Department dept = new Department();
+////        dept.setName(eRequest.getDepartment());
+////
+////        dept = dRepo.save(dept);
+////
+////        Employee employee = new Employee(eRequest);
+////        employee.setDepartment(dept);
+////
+////        employee = eRepo.save(employee);
+////        return new ResponseEntity<Employee>(employee, HttpStatus.CREATED);
+//
+//        Employee employee  = new Employee(eRequest);
+//        employee = eRepo.save(employee);
+//
+//        for (String s : eRequest.getDepartment()) {
+//            Department d = new Department();
+//            d.setName(s);
+//            d.setEmployee(employee);
+//            dRepo.save(d);
+//        }
+//        return new ResponseEntity<String>("记录成功保存",HttpStatus.CREATED);
+//    }
+//
 
+
+    /**
+     *  URL: http://127.0.0.1:8080/
+     *  Method: POST
+     *  Purpose: 根据部门获取所有员工
+     *  Return: Employee
+     *
+     */
+
+//    @PostMapping("/employee")
+//    public ResponseEntity<Employee> saveEmployee(@Valid @RequestBody EmployeeRequest eRequest) {
 //        Department dept = new Department();
+//
 //        dept.setName(eRequest.getDepartment());
 //
-//        dept = dRepo.save(dept);
-//
+//        dept.dRepo.save(dept);
 //        Employee employee = new Employee(eRequest);
 //        employee.setDepartment(dept);
 //
-//        employee = eRepo.save(employee);
-//        return new ResponseEntity<Employee>(employee, HttpStatus.CREATED);
+//        return new ResponseEntity<Employee>(eRepo.save(employee), HttpStatus.OK);
+//    }
+
+    @PostMapping(value = "/employees")
+    public ResponseEntity<Employee> saveEmployee(@Valid @RequestBody EmployeeRequest eRequest) {
+        Department dept = new Department();
+        dept.setName(eRequest.getDepartment());
+
+        dept = dRepo.save(dept);
 
         Employee employee  = new Employee(eRequest);
-        employee = eRepo.save(employee);
+        employee.setDepartment(dept);
 
-        for (String s : eRequest.getDepartment()) {
-            Department d = new Department();
-            d.setName(s);
-            d.setEmployee(employee);
-            dRepo.save(d);
-        }
-        return new ResponseEntity<String>("记录成功保存",HttpStatus.CREATED);
+        return new ResponseEntity<Employee>(eRepo.save(employee),HttpStatus.CREATED);
     }
+
+
+
+
+
 
 
     /**
